@@ -1,25 +1,26 @@
-//
-//  ViewController.swift
-//  MyShowcase
-//
-//  Created by Preeti Patel on 31/08/16.
-//  Copyright © 2016 Vandan Patel. All rights reserved.
-//
-
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func facebookButtonPressed(sender: UIButton!) {
+        let facebookLogin = FBSDKLoginManager()
+        
+        facebookLogin.logInWithReadPermissions(["email"], fromViewController: self) { (facebookResult: FBSDKLoginManagerLoginResult!, facebookError: NSError!) in
+            
+            if facebookError != nil {
+                //To-Do : Implement a pop up
+                print("Facebook Login Failed! Error : \(facebookError)")
+            } else {
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                print("Successfully logged in with facebook. \(accessToken)")
+            }
+        }
     }
-
-
 }
 
