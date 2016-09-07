@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         facebookLogin.logInWithReadPermissions(["email"], fromViewController: self) { (facebookResult: FBSDKLoginManagerLoginResult!, facebookError: NSError!) in
             
             if facebookError != nil {
-                //To-Do : Implement a pop up
+                self.showErrorAlert("Facebook Login Failed", message: "Unknown Error. Please try again!")
                 print("Facebook Login Failed! Error : \(facebookError)")
             } else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
                         print("Login Failed. \(error)")
                     } else {
     
-                        let userData = ["provider": credential.provider]
+                        let userData = ["provider": credential.provider, "blah":"test"]
                         DataService.ds.createFirebaseUser((user!.uid), user: userData)
                         
                         print("Logged In. \(user)")
@@ -75,7 +75,7 @@ class ViewController: UIViewController {
                             } else {
                                 NSUserDefaults.standardUserDefaults().setValue(user!.uid, forKey: KEY_UID)
                                 
-                                let userData = ["provider":"email"]
+                                let userData = ["provider":"email","blah":"emailTest"]
                                 DataService.ds.createFirebaseUser(user!.uid, user: userData) 
                                 self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
                             }

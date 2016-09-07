@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		623E1A211D7E5EEA00614587 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E1A201D7E5EEA00614587 /* FeedVC.swift */; };
 		623E1A231D7E602900614587 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E1A221D7E602900614587 /* PostCell.swift */; };
+		623E1A251D80B1B000614587 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623E1A241D80B1B000614587 /* Post.swift */; };
 		6295CC8C1D7944C300D625E0 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6295CC8B1D7944C300D625E0 /* DataService.swift */; };
 		6295CC8E1D794D0100D625E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6295CC8D1D794D0100D625E0 /* GoogleService-Info.plist */; };
 		62CFA6FC1D77563300F6EF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFA6FB1D77563300F6EF82 /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		34740293F134E0A889EF396E /* Pods_MyShowcase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyShowcase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		623E1A201D7E5EEA00614587 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		623E1A221D7E602900614587 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		623E1A241D80B1B000614587 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6295CC8B1D7944C300D625E0 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		6295CC8D1D794D0100D625E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		62CFA6F81D77563200F6EF82 /* MyShowcase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyShowcase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 		62CFA70F1D77567800F6EF82 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				623E1A241D80B1B000614587 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				62CFA6FC1D77563300F6EF82 /* AppDelegate.swift in Sources */,
 				62CFA71D1D77691800F6EF82 /* Constants.swift in Sources */,
 				62CFA71F1D77833400F6EF82 /* MaterialButton.swift in Sources */,
+				623E1A251D80B1B000614587 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
