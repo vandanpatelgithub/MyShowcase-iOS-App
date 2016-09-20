@@ -1,7 +1,9 @@
 import Foundation
 import Firebase
+import FirebaseStorage
 
 let URL_BASE  = FIRDatabase.database().reference()
+let STORAGE_URL = FIRStorage.storage().referenceForURL(FIREBASE_STORAGE_URL)
 
 class DataService {
     static let ds = DataService()

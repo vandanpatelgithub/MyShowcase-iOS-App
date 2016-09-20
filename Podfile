@@ -5,4 +5,6 @@ target 'MyShowcase' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Alamofire', '~> 3.4'
+    pod 'Firebase/Storage'
+    pod 'EZLoadingActivity'
 end

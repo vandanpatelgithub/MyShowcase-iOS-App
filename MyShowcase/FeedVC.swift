@@ -1,6 +1,8 @@
 import UIKit
 import Firebase
 import Alamofire
+import FirebaseStorage
+import EZLoadingActivity
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -66,6 +68,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             }
             
             cell.configureCell(post, image: image)
+            
             return cell
         } else {
             return PostCell()
@@ -96,39 +99,38 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         if let txt = postField.text where txt != "" {
             if let image = imageSelectorImage.image where imageSelected == true {
-                let urlStr = "https://post.imageshack.us/upload_api.php"
-                let url = NSURL(string: urlStr)
+                EZLoadingActivity.show("Uploading...", disableUI: false)
+                let imageRef = STORAGE_URL.child("\(NSDate.timeIntervalSinceReferenceDate()).png")
+                let imageData: NSData = UIImagePNGRepresentation(image)!
                 
-                let imageData = UIImageJPEGRepresentation(image, 0.2)
-                let keyData = "49ACILMSa3bb4f31c5b6f7aeee9e5623c70c83d7".dataUsingEncoding(NSUTF8StringEncoding)
-                let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)
-                
-                Alamofire.upload(.POST, url!, multipartFormData: { multipartFormData in
-                    
-                    multipartFormData.appendBodyPart(data: imageData!, name: "fileupload", fileName: "image", mimeType: "image/jpg")
-                    multipartFormData.appendBodyPart(data: keyData!, name: "key")
-                    multipartFormData.appendBodyPart(data: keyJSON!, name: "format")
-                    
-                }) { encodingResult in
-                    
-                    switch encodingResult {
-                    case .Success(let upload, _, _):
-                        upload.responseJSON(completionHandler: { (response) in
-                            if let info = response.result.value as? Dictionary<String, AnyObject> {
-                                
-                                if let links = info["links"] as? Dictionary<String, AnyObject> {
-                                    if let imageLink = links["image_link"] as? String {
-                                        print("LINK : \(imageLink)")
-                                        self.postToFirebase(imageLink)
-                                    }
-                                }
-                            }
-                        })
-                    case .Failure(let error):
-                        print(error)
+                let uploadTask = imageRef.putData(imageData, metadata: nil) { metadata, error in
+                    if error == nil {
+                        let downloadURL = metadata!.downloadURL()
+                        print("URL : \(downloadURL)")
+                        self.postToFirebase(downloadURL?.absoluteString)
                     }
                 }
-            } else {
+                
+                uploadTask.observeStatus(.Progress, handler: { (snapshot) in
+                    if let progress = snapshot.progress {
+                        let percentComplete = 100 * Int(progress.completedUnitCount) / Int(progress.totalUnitCount)
+                        print(percentComplete)
+                        
+                    }
+                })
+                
+                uploadTask.observeStatus(.Success, handler: { (snapshot) in
+                    EZLoadingActivity.hide(success: true, animated: true)
+                    print("Image Uploaded Successfully")
+                })
+                
+                uploadTask.observeStatus(.Failure, handler: { (snapshot) in
+                    EZLoadingActivity.hide(success: false, animated: true)
+                })
+                
+                
+            }
+            else {
                 self.postToFirebase(nil)
             }
         }
@@ -138,7 +140,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         var post: Dictionary<String, AnyObject> = [
             "description": postField.text!,
             "likes": 0,
-        ]
+            ]
         
         if imageURL != nil {
             post["imageUrl"] = imageURL!
