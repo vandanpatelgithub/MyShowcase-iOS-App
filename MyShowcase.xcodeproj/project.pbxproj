@@ -29,6 +29,7 @@
 		62CFA7271D77B79100F6EF82 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CFA7241D77B79000F6EF82 /* FBSDKCoreKit.framework */; };
 		62CFA7281D77B79100F6EF82 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CFA7251D77B79000F6EF82 /* FBSDKLoginKit.framework */; };
 		62CFA72A1D77B7D900F6EF82 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CFA7291D77B7D900F6EF82 /* FBSDKShareKit.framework */; };
+		62F7A6A81D90E7550095A86E /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F7A6A71D90E7550095A86E /* ProfileVC.swift */; };
 		AACFB81C1593D0B5B7A063C0 /* Pods_MyShowcase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34740293F134E0A889EF396E /* Pods_MyShowcase.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		62CFA7241D77B79000F6EF82 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		62CFA7251D77B79000F6EF82 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		62CFA7291D77B7D900F6EF82 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		62F7A6A71D90E7550095A86E /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		7A00C7BC66DB4FFE6EAB4BCF /* Pods-MyShowcase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShowcase.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyShowcase/Pods-MyShowcase.release.xcconfig"; sourceTree = "<group>"; };
 		A23C2EC42FEE305F861C5B23 /* Pods-MyShowcase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyShowcase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyShowcase/Pods-MyShowcase.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 			children = (
 				62CFA6FD1D77563300F6EF82 /* ViewController.swift */,
 				623E1A201D7E5EEA00614587 /* FeedVC.swift */,
+				62F7A6A71D90E7550095A86E /* ProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				62CFA6FC1D77563300F6EF82 /* AppDelegate.swift in Sources */,
 				62CFA71D1D77691800F6EF82 /* Constants.swift in Sources */,
 				62CFA71F1D77833400F6EF82 /* MaterialButton.swift in Sources */,
+				62F7A6A81D90E7550095A86E /* ProfileVC.swift in Sources */,
 				623E1A251D80B1B000614587 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

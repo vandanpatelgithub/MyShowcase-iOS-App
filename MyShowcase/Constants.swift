@@ -6,10 +6,12 @@ let SHADOW_COLOR: CGFloat = 157.0 / 255.0
 //Keys
 
 let KEY_UID = "uid"
+let KEY_USERNAME = "username"
 
 //Sqgues
 
 let SEGUE_LOGGED_IN = "loggedIn"
+let SEGUE_PROFILE_PAGE = "ProfilePage"
 
 //Status Codes
 

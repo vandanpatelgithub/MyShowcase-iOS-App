@@ -14,9 +14,14 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+
         
-        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil {
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil && NSUserDefaults.standardUserDefaults().valueForKey(KEY_USERNAME) != nil {
             self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+        }
+        
+        else if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil && NSUserDefaults.standardUserDefaults().valueForKey(KEY_USERNAME) == nil {
+            self.performSegueWithIdentifier(SEGUE_PROFILE_PAGE, sender: nil)
         }
     }
     
@@ -46,7 +51,7 @@ class ViewController: UIViewController {
                         
                         NSUserDefaults.standardUserDefaults().setValue(user!.uid, forKey: KEY_UID)
                         
-                        self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                        self.performSegueWithIdentifier(SEGUE_PROFILE_PAGE, sender: nil)
                     }
                 })
             }
@@ -77,7 +82,7 @@ class ViewController: UIViewController {
                                 
                                 let userData = ["provider":"email","blah":"emailTest"]
                                 DataService.ds.createFirebaseUser(user!.uid, user: userData) 
-                                self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                                self.performSegueWithIdentifier(SEGUE_PROFILE_PAGE, sender: nil)
                             }
                         })
                         
