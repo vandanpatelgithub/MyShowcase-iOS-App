@@ -7,6 +7,7 @@ let SHADOW_COLOR: CGFloat = 157.0 / 255.0
 
 let KEY_UID = "uid"
 let KEY_USERNAME = "username"
+let KEY_PROFILE_PIC_PATH = "imagePath"
 
 //Sqgues
 

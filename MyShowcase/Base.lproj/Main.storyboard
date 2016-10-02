@@ -376,6 +376,7 @@
                                             <outlet property="likesLabel" destination="N8t-Ao-LYJ" id="Zge-Hn-zqN"/>
                                             <outlet property="profilePic" destination="T5C-H9-qNC" id="or7-sL-uYS"/>
                                             <outlet property="showcaseImage" destination="OD4-ZY-yLU" id="so6-Rb-L06"/>
+                                            <outlet property="username" destination="b3X-3k-0fJ" id="0Of-4S-rex"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

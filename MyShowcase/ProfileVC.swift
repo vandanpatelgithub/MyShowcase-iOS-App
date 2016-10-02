@@ -5,6 +5,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var username: MaterialTextField!
     
+    
     var imagePicker: UIImagePickerController!
 
     override func viewDidLoad() {
@@ -23,6 +24,23 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @IBAction func submitBtnPressed(sender: UIButton) {
+        
+//        let currentUserReference = DataService.ds.REF_USER_CURRENT
+        
+        if let userName = username.text where userName.characters.count != 0 {
+            
+//            let userNameDictionary = ["username": userName]
+//            currentUserReference.updateChildValues(userNameDictionary)
+            NSUserDefaults.standardUserDefaults().setValue(userName, forKey: KEY_USERNAME)
+        }
+        
+        if let image = profilePic.image {
+            let imagePath = DataService.ds.saveImageAndCreatePath(image)
+            NSUserDefaults.standardUserDefaults().setValue(imagePath, forKey: KEY_PROFILE_PIC_PATH)
+        
+        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?)
@@ -30,4 +48,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         profilePic.image = image
     }
+    
+    
 }

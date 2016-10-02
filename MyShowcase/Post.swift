@@ -32,7 +32,7 @@ class Post {
         self._imageURL = imageURL
         self._username = username
     }
-    
+        
     init(postKey: String, dictionary: Dictionary<String, AnyObject>) {
         self._postKey = postKey
         

@@ -33,4 +33,24 @@ class DataService {
     func createFirebaseUser(uid: String, user: Dictionary<String, String>) {
         REF_USERS.child(uid).updateChildValues(user)
     }
+    
+    func saveImageAndCreatePath(image: UIImage) -> String {
+        let imageData = UIImagePNGRepresentation(image)
+        let imagePath = "image\(NSDate.timeIntervalSinceReferenceDate()).png"
+        let fullPath = documentsPathForFilename(imagePath)
+        imageData?.writeToFile(fullPath, atomically: true)
+        return imagePath
+    }
+    
+    func imageForPath(path: String) -> UIImage {
+        let fullPath = documentsPathForFilename(path)
+        let image = UIImage(named: fullPath)
+        return image!
+    }
+    
+    func documentsPathForFilename(name: String) -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let fullPath = paths[0] as NSString
+        return fullPath.stringByAppendingPathComponent(name)
+    }
 }
