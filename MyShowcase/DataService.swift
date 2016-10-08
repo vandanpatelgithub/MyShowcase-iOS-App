@@ -11,6 +11,7 @@ class DataService {
     private var _REF_BASE = URL_BASE
     private var _REF_POSTS = URL_BASE.child("posts")
     private var _REF_USERS = URL_BASE.child("users")
+    private var _REF_USERNAMES = URL_BASE.child("usernames")
     
     var REF_BASE: FIRDatabaseReference {
         return _REF_BASE
@@ -24,6 +25,10 @@ class DataService {
         return _REF_USERS
     }
     
+    var REF_USERNAMES: FIRDatabaseReference {
+        return _REF_USERNAMES
+    }
+    
     var REF_USER_CURRENT: FIRDatabaseReference {
         let uid =  NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
         let user = URL_BASE.child("users").child(uid)
@@ -32,6 +37,11 @@ class DataService {
     
     func createFirebaseUser(uid: String, user: Dictionary<String, String>) {
         REF_USERS.child(uid).updateChildValues(user)
+    }
+    
+    func createUsername(username: String, uid: AnyObject) {
+        let userDictionaty = [username: uid]
+        REF_USERNAMES.updateChildValues(userDictionaty)
     }
     
     func saveImageAndCreatePath(image: UIImage) -> String {
@@ -53,4 +63,5 @@ class DataService {
         let fullPath = paths[0] as NSString
         return fullPath.stringByAppendingPathComponent(name)
     }
+    
 }

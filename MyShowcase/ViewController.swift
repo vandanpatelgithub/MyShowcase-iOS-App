@@ -14,12 +14,12 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil && NSUserDefaults.standardUserDefaults().valueForKey(KEY_USERNAME) != nil {
             self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
-        
+            
         else if NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) != nil && NSUserDefaults.standardUserDefaults().valueForKey(KEY_USERNAME) == nil {
             self.performSegueWithIdentifier(SEGUE_PROFILE_PAGE, sender: nil)
         }
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
                     if error != nil {
                         print("Login Failed. \(error)")
                     } else {
-    
+                        
                         let userData = ["provider": credential.provider, "blah":"test"]
                         DataService.ds.createFirebaseUser((user!.uid), user: userData)
                         
@@ -76,12 +76,12 @@ class ViewController: UIViewController {
                                 if error!.code == STATUS_WEAK_PASSWORD {
                                     self.showErrorAlert("Weak Password", message: "Password should be at least 6 characters")
                                 }
-                             //   self.showErrorAlert("Could Not Create Account", message: "Problem creating the account. Try //something else.")
+                                //   self.showErrorAlert("Could Not Create Account", message: "Problem creating the account. Try //something else.")
                             } else {
                                 NSUserDefaults.standardUserDefaults().setValue(user!.uid, forKey: KEY_UID)
                                 
-                                let userData = ["provider":"email","blah":"emailTest"]
-                                DataService.ds.createFirebaseUser(user!.uid, user: userData) 
+                                let userData = ["provider":"email"]
+                                DataService.ds.createFirebaseUser(user!.uid, user: userData)
                                 self.performSegueWithIdentifier(SEGUE_PROFILE_PAGE, sender: nil)
                             }
                         })
@@ -90,12 +90,16 @@ class ViewController: UIViewController {
                         self.showErrorAlert("Could Not Log In", message: "Please check your username and password is correct")
                     }
                 } else {
-                    self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                    NSUserDefaults.standardUserDefaults().setValue(user!.uid, forKey: KEY_UID)
+                    
+                    let userData = ["provider":"email"]
+                    DataService.ds.createFirebaseUser(user!.uid, user: userData)
+                    self.performSegueWithIdentifier(SEGUE_PROFILE_PAGE, sender: nil)
                 }
             })
             
         } else {
-            showErrorAlert("Email and Password Required", message: "You must enter an email and a password")
+            self.showErrorAlert("Email and Password Required", message: "You must enter an email and a password")
         }
     }
     
@@ -106,4 +110,5 @@ class ViewController: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
     }
 }
+
 
